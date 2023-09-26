@@ -17,16 +17,52 @@
 package co.tryterra.terraclient.models.v2.samples;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.AccessLevel;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-@Data
-@NoArgsConstructor
-@Setter(AccessLevel.NONE)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class HeartRateDataSample {
     private String timestamp;
     private Double bpm;
+
+    public HeartRateDataSample() {
+    }
+
+    public String getTimestamp() {
+        return this.timestamp;
+    }
+
+    public Double getBpm() {
+        return this.bpm;
+    }
+
+    public boolean equals(final Object o) {
+        if (o == this) return true;
+        if (!(o instanceof HeartRateDataSample)) return false;
+        final HeartRateDataSample other = (HeartRateDataSample) o;
+        if (!other.canEqual((Object) this)) return false;
+        final Object this$timestamp = this.getTimestamp();
+        final Object other$timestamp = other.getTimestamp();
+        if (this$timestamp == null ? other$timestamp != null : !this$timestamp.equals(other$timestamp)) return false;
+        final Object this$bpm = this.getBpm();
+        final Object other$bpm = other.getBpm();
+        if (this$bpm == null ? other$bpm != null : !this$bpm.equals(other$bpm)) return false;
+        return true;
+    }
+
+    protected boolean canEqual(final Object other) {
+        return other instanceof HeartRateDataSample;
+    }
+
+    public int hashCode() {
+        final int PRIME = 59;
+        int result = 1;
+        final Object $timestamp = this.getTimestamp();
+        result = result * PRIME + ($timestamp == null ? 43 : $timestamp.hashCode());
+        final Object $bpm = this.getBpm();
+        result = result * PRIME + ($bpm == null ? 43 : $bpm.hashCode());
+        return result;
+    }
+
+    public String toString() {
+        return "HeartRateDataSample(timestamp=" + this.getTimestamp() + ", bpm=" + this.getBpm() + ")";
+    }
 }

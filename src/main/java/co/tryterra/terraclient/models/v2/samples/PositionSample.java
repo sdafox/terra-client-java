@@ -18,16 +18,9 @@ package co.tryterra.terraclient.models.v2.samples;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.AccessLevel;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import java.util.List;
 
-@Data
-@NoArgsConstructor
-@Setter(AccessLevel.NONE)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class PositionSample {
     private String timestamp;
@@ -35,4 +28,58 @@ public class PositionSample {
     private List<Double> coordsLatLngDeg;
     @JsonProperty("timer_duration_seconds")
     private Double timerDurationSeconds;
+
+    public PositionSample() {
+    }
+
+    public String getTimestamp() {
+        return this.timestamp;
+    }
+
+    public List<Double> getCoordsLatLngDeg() {
+        return this.coordsLatLngDeg;
+    }
+
+    public Double getTimerDurationSeconds() {
+        return this.timerDurationSeconds;
+    }
+
+    public boolean equals(final Object o) {
+        if (o == this) return true;
+        if (!(o instanceof PositionSample)) return false;
+        final PositionSample other = (PositionSample) o;
+        if (!other.canEqual((Object) this)) return false;
+        final Object this$timestamp = this.getTimestamp();
+        final Object other$timestamp = other.getTimestamp();
+        if (this$timestamp == null ? other$timestamp != null : !this$timestamp.equals(other$timestamp)) return false;
+        final Object this$coordsLatLngDeg = this.getCoordsLatLngDeg();
+        final Object other$coordsLatLngDeg = other.getCoordsLatLngDeg();
+        if (this$coordsLatLngDeg == null ? other$coordsLatLngDeg != null : !this$coordsLatLngDeg.equals(other$coordsLatLngDeg))
+            return false;
+        final Object this$timerDurationSeconds = this.getTimerDurationSeconds();
+        final Object other$timerDurationSeconds = other.getTimerDurationSeconds();
+        if (this$timerDurationSeconds == null ? other$timerDurationSeconds != null : !this$timerDurationSeconds.equals(other$timerDurationSeconds))
+            return false;
+        return true;
+    }
+
+    protected boolean canEqual(final Object other) {
+        return other instanceof PositionSample;
+    }
+
+    public int hashCode() {
+        final int PRIME = 59;
+        int result = 1;
+        final Object $timestamp = this.getTimestamp();
+        result = result * PRIME + ($timestamp == null ? 43 : $timestamp.hashCode());
+        final Object $coordsLatLngDeg = this.getCoordsLatLngDeg();
+        result = result * PRIME + ($coordsLatLngDeg == null ? 43 : $coordsLatLngDeg.hashCode());
+        final Object $timerDurationSeconds = this.getTimerDurationSeconds();
+        result = result * PRIME + ($timerDurationSeconds == null ? 43 : $timerDurationSeconds.hashCode());
+        return result;
+    }
+
+    public String toString() {
+        return "PositionSample(timestamp=" + this.getTimestamp() + ", coordsLatLngDeg=" + this.getCoordsLatLngDeg() + ", timerDurationSeconds=" + this.getTimerDurationSeconds() + ")";
+    }
 }

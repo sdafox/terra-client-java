@@ -18,17 +18,51 @@ package co.tryterra.terraclient.models.v2.samples;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.AccessLevel;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-@Data
-@NoArgsConstructor
-@Setter(AccessLevel.NONE)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class HydrationMeasurementSample {
     private String timestamp;
     @JsonProperty("hydration_kg")
     private double hydrationKg;
+
+    public HydrationMeasurementSample() {
+    }
+
+    public String getTimestamp() {
+        return this.timestamp;
+    }
+
+    public double getHydrationKg() {
+        return this.hydrationKg;
+    }
+
+    public boolean equals(final Object o) {
+        if (o == this) return true;
+        if (!(o instanceof HydrationMeasurementSample)) return false;
+        final HydrationMeasurementSample other = (HydrationMeasurementSample) o;
+        if (!other.canEqual((Object) this)) return false;
+        final Object this$timestamp = this.getTimestamp();
+        final Object other$timestamp = other.getTimestamp();
+        if (this$timestamp == null ? other$timestamp != null : !this$timestamp.equals(other$timestamp)) return false;
+        if (Double.compare(this.getHydrationKg(), other.getHydrationKg()) != 0) return false;
+        return true;
+    }
+
+    protected boolean canEqual(final Object other) {
+        return other instanceof HydrationMeasurementSample;
+    }
+
+    public int hashCode() {
+        final int PRIME = 59;
+        int result = 1;
+        final Object $timestamp = this.getTimestamp();
+        result = result * PRIME + ($timestamp == null ? 43 : $timestamp.hashCode());
+        final long $hydrationKg = Double.doubleToLongBits(this.getHydrationKg());
+        result = result * PRIME + (int) ($hydrationKg >>> 32 ^ $hydrationKg);
+        return result;
+    }
+
+    public String toString() {
+        return "HydrationMeasurementSample(timestamp=" + this.getTimestamp() + ", hydrationKg=" + this.getHydrationKg() + ")";
+    }
 }

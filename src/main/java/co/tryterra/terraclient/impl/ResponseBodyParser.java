@@ -18,13 +18,12 @@ package co.tryterra.terraclient.impl;
 
 import co.tryterra.terraclient.api.PartialUser;
 import co.tryterra.terraclient.api.TerraApiResponse;
-import co.tryterra.terraclient.exceptions.TerraRuntimeException;
-import co.tryterra.terraclient.impl.v2.RestClientV2;
 import co.tryterra.terraclient.api.User;
 import co.tryterra.terraclient.exceptions.BodyParsingException;
+import co.tryterra.terraclient.exceptions.TerraRuntimeException;
+import co.tryterra.terraclient.impl.v2.RestClientV2;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
-import lombok.Data;
 import okhttp3.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -51,11 +50,66 @@ public class ResponseBodyParser<T> {
         this.restClient = restClient;
     }
 
-    @Data
     static class ParsedResponse<T> {
         private final JsonNode rawBody;
         private final List<T> parsedBody;
         private final User user;
+
+        public ParsedResponse(JsonNode rawBody, List<T> parsedBody, User user) {
+            this.rawBody = rawBody;
+            this.parsedBody = parsedBody;
+            this.user = user;
+        }
+
+        public JsonNode getRawBody() {
+            return this.rawBody;
+        }
+
+        public List<T> getParsedBody() {
+            return this.parsedBody;
+        }
+
+        public User getUser() {
+            return this.user;
+        }
+
+        public boolean equals(final Object o) {
+            if (o == this) return true;
+            if (!(o instanceof ResponseBodyParser.ParsedResponse)) return false;
+            final ParsedResponse<?> other = (ParsedResponse<?>) o;
+            if (!other.canEqual((Object) this)) return false;
+            final Object this$rawBody = this.getRawBody();
+            final Object other$rawBody = other.getRawBody();
+            if (this$rawBody == null ? other$rawBody != null : !this$rawBody.equals(other$rawBody)) return false;
+            final Object this$parsedBody = this.getParsedBody();
+            final Object other$parsedBody = other.getParsedBody();
+            if (this$parsedBody == null ? other$parsedBody != null : !this$parsedBody.equals(other$parsedBody))
+                return false;
+            final Object this$user = this.getUser();
+            final Object other$user = other.getUser();
+            if (this$user == null ? other$user != null : !this$user.equals(other$user)) return false;
+            return true;
+        }
+
+        protected boolean canEqual(final Object other) {
+            return other instanceof ResponseBodyParser.ParsedResponse;
+        }
+
+        public int hashCode() {
+            final int PRIME = 59;
+            int result = 1;
+            final Object $rawBody = this.getRawBody();
+            result = result * PRIME + ($rawBody == null ? 43 : $rawBody.hashCode());
+            final Object $parsedBody = this.getParsedBody();
+            result = result * PRIME + ($parsedBody == null ? 43 : $parsedBody.hashCode());
+            final Object $user = this.getUser();
+            result = result * PRIME + ($user == null ? 43 : $user.hashCode());
+            return result;
+        }
+
+        public String toString() {
+            return "ResponseBodyParser.ParsedResponse(rawBody=" + this.getRawBody() + ", parsedBody=" + this.getParsedBody() + ", user=" + this.getUser() + ")";
+        }
     }
 
     T jsonNodeToObject(JsonNode node) {

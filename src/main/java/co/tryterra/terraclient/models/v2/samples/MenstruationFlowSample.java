@@ -17,16 +17,52 @@
 package co.tryterra.terraclient.models.v2.samples;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.AccessLevel;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-@Data
-@NoArgsConstructor
-@Setter(AccessLevel.NONE)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class MenstruationFlowSample {
     private String timestamp;
     private Integer flow;
+
+    public MenstruationFlowSample() {
+    }
+
+    public String getTimestamp() {
+        return this.timestamp;
+    }
+
+    public Integer getFlow() {
+        return this.flow;
+    }
+
+    public boolean equals(final Object o) {
+        if (o == this) return true;
+        if (!(o instanceof MenstruationFlowSample)) return false;
+        final MenstruationFlowSample other = (MenstruationFlowSample) o;
+        if (!other.canEqual((Object) this)) return false;
+        final Object this$timestamp = this.getTimestamp();
+        final Object other$timestamp = other.getTimestamp();
+        if (this$timestamp == null ? other$timestamp != null : !this$timestamp.equals(other$timestamp)) return false;
+        final Object this$flow = this.getFlow();
+        final Object other$flow = other.getFlow();
+        if (this$flow == null ? other$flow != null : !this$flow.equals(other$flow)) return false;
+        return true;
+    }
+
+    protected boolean canEqual(final Object other) {
+        return other instanceof MenstruationFlowSample;
+    }
+
+    public int hashCode() {
+        final int PRIME = 59;
+        int result = 1;
+        final Object $timestamp = this.getTimestamp();
+        result = result * PRIME + ($timestamp == null ? 43 : $timestamp.hashCode());
+        final Object $flow = this.getFlow();
+        result = result * PRIME + ($flow == null ? 43 : $flow.hashCode());
+        return result;
+    }
+
+    public String toString() {
+        return "MenstruationFlowSample(timestamp=" + this.getTimestamp() + ", flow=" + this.getFlow() + ")";
+    }
 }

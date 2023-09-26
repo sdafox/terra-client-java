@@ -17,18 +17,63 @@
 package co.tryterra.terraclient.models.v2.daily;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.AccessLevel;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 
-@Data
-@NoArgsConstructor
-@Setter(AccessLevel.NONE)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ScoresData {
     private Double recovery;
     private Double sleep;
     private Double activity;
+
+    public ScoresData() {
+    }
+
+    public Double getRecovery() {
+        return this.recovery;
+    }
+
+    public Double getSleep() {
+        return this.sleep;
+    }
+
+    public Double getActivity() {
+        return this.activity;
+    }
+
+    public boolean equals(final Object o) {
+        if (o == this) return true;
+        if (!(o instanceof ScoresData)) return false;
+        final ScoresData other = (ScoresData) o;
+        if (!other.canEqual((Object) this)) return false;
+        final Object this$recovery = this.getRecovery();
+        final Object other$recovery = other.getRecovery();
+        if (this$recovery == null ? other$recovery != null : !this$recovery.equals(other$recovery)) return false;
+        final Object this$sleep = this.getSleep();
+        final Object other$sleep = other.getSleep();
+        if (this$sleep == null ? other$sleep != null : !this$sleep.equals(other$sleep)) return false;
+        final Object this$activity = this.getActivity();
+        final Object other$activity = other.getActivity();
+        if (this$activity == null ? other$activity != null : !this$activity.equals(other$activity)) return false;
+        return true;
+    }
+
+    protected boolean canEqual(final Object other) {
+        return other instanceof ScoresData;
+    }
+
+    public int hashCode() {
+        final int PRIME = 59;
+        int result = 1;
+        final Object $recovery = this.getRecovery();
+        result = result * PRIME + ($recovery == null ? 43 : $recovery.hashCode());
+        final Object $sleep = this.getSleep();
+        result = result * PRIME + ($sleep == null ? 43 : $sleep.hashCode());
+        final Object $activity = this.getActivity();
+        result = result * PRIME + ($activity == null ? 43 : $activity.hashCode());
+        return result;
+    }
+
+    public String toString() {
+        return "ScoresData(recovery=" + this.getRecovery() + ", sleep=" + this.getSleep() + ", activity=" + this.getActivity() + ")";
+    }
 }

@@ -17,10 +17,53 @@
 package co.tryterra.terraclient.models;
 
 import co.tryterra.terraclient.api.User;
-import lombok.Data;
 
-@Data
 public class ReauthData {
     private final User oldUser;
     private final User newUser;
+
+    public ReauthData(User oldUser, User newUser) {
+        this.oldUser = oldUser;
+        this.newUser = newUser;
+    }
+
+    public User getOldUser() {
+        return this.oldUser;
+    }
+
+    public User getNewUser() {
+        return this.newUser;
+    }
+
+    public boolean equals(final Object o) {
+        if (o == this) return true;
+        if (!(o instanceof ReauthData)) return false;
+        final ReauthData other = (ReauthData) o;
+        if (!other.canEqual((Object) this)) return false;
+        final Object this$oldUser = this.getOldUser();
+        final Object other$oldUser = other.getOldUser();
+        if (this$oldUser == null ? other$oldUser != null : !this$oldUser.equals(other$oldUser)) return false;
+        final Object this$newUser = this.getNewUser();
+        final Object other$newUser = other.getNewUser();
+        if (this$newUser == null ? other$newUser != null : !this$newUser.equals(other$newUser)) return false;
+        return true;
+    }
+
+    protected boolean canEqual(final Object other) {
+        return other instanceof ReauthData;
+    }
+
+    public int hashCode() {
+        final int PRIME = 59;
+        int result = 1;
+        final Object $oldUser = this.getOldUser();
+        result = result * PRIME + ($oldUser == null ? 43 : $oldUser.hashCode());
+        final Object $newUser = this.getNewUser();
+        result = result * PRIME + ($newUser == null ? 43 : $newUser.hashCode());
+        return result;
+    }
+
+    public String toString() {
+        return "ReauthData(oldUser=" + this.getOldUser() + ", newUser=" + this.getNewUser() + ")";
+    }
 }

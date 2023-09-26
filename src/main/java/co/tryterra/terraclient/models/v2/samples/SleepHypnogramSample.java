@@ -17,16 +17,49 @@
 package co.tryterra.terraclient.models.v2.samples;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.AccessLevel;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-@Data
-@NoArgsConstructor
-@Setter(AccessLevel.NONE)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class SleepHypnogramSample {
     private String timestamp;
     private int level;
+
+    public SleepHypnogramSample() {
+    }
+
+    public String getTimestamp() {
+        return this.timestamp;
+    }
+
+    public int getLevel() {
+        return this.level;
+    }
+
+    public boolean equals(final Object o) {
+        if (o == this) return true;
+        if (!(o instanceof SleepHypnogramSample)) return false;
+        final SleepHypnogramSample other = (SleepHypnogramSample) o;
+        if (!other.canEqual((Object) this)) return false;
+        final Object this$timestamp = this.getTimestamp();
+        final Object other$timestamp = other.getTimestamp();
+        if (this$timestamp == null ? other$timestamp != null : !this$timestamp.equals(other$timestamp)) return false;
+        if (this.getLevel() != other.getLevel()) return false;
+        return true;
+    }
+
+    protected boolean canEqual(final Object other) {
+        return other instanceof SleepHypnogramSample;
+    }
+
+    public int hashCode() {
+        final int PRIME = 59;
+        int result = 1;
+        final Object $timestamp = this.getTimestamp();
+        result = result * PRIME + ($timestamp == null ? 43 : $timestamp.hashCode());
+        result = result * PRIME + this.getLevel();
+        return result;
+    }
+
+    public String toString() {
+        return "SleepHypnogramSample(timestamp=" + this.getTimestamp() + ", level=" + this.getLevel() + ")";
+    }
 }

@@ -19,17 +19,54 @@ package co.tryterra.terraclient.models.v2.menstruation;
 import co.tryterra.terraclient.models.v2.common.Metadata;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.AccessLevel;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-@Data
-@NoArgsConstructor
-@Setter(AccessLevel.NONE)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Menstruation {
     private Metadata metadata;
     @JsonProperty("menstruation_data")
     private MenstruationData menstruationData;
+
+    public Menstruation() {
+    }
+
+    public Metadata getMetadata() {
+        return this.metadata;
+    }
+
+    public MenstruationData getMenstruationData() {
+        return this.menstruationData;
+    }
+
+    public boolean equals(final Object o) {
+        if (o == this) return true;
+        if (!(o instanceof Menstruation)) return false;
+        final Menstruation other = (Menstruation) o;
+        if (!other.canEqual((Object) this)) return false;
+        final Object this$metadata = this.getMetadata();
+        final Object other$metadata = other.getMetadata();
+        if (this$metadata == null ? other$metadata != null : !this$metadata.equals(other$metadata)) return false;
+        final Object this$menstruationData = this.getMenstruationData();
+        final Object other$menstruationData = other.getMenstruationData();
+        if (this$menstruationData == null ? other$menstruationData != null : !this$menstruationData.equals(other$menstruationData))
+            return false;
+        return true;
+    }
+
+    protected boolean canEqual(final Object other) {
+        return other instanceof Menstruation;
+    }
+
+    public int hashCode() {
+        final int PRIME = 59;
+        int result = 1;
+        final Object $metadata = this.getMetadata();
+        result = result * PRIME + ($metadata == null ? 43 : $metadata.hashCode());
+        final Object $menstruationData = this.getMenstruationData();
+        result = result * PRIME + ($menstruationData == null ? 43 : $menstruationData.hashCode());
+        return result;
+    }
+
+    public String toString() {
+        return "Menstruation(metadata=" + this.getMetadata() + ", menstruationData=" + this.getMenstruationData() + ")";
+    }
 }

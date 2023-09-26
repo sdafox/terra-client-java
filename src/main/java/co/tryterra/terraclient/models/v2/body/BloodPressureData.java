@@ -19,18 +19,46 @@ package co.tryterra.terraclient.models.v2.body;
 import co.tryterra.terraclient.models.v2.samples.BloodPressureSample;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.AccessLevel;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import java.util.List;
 
-@Data
-@NoArgsConstructor
-@Setter(AccessLevel.NONE)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class BloodPressureData {
     @JsonProperty("blood_pressure_samples")
     private List<BloodPressureSample> bloodPressureSamples;
+
+    public BloodPressureData() {
+    }
+
+    public List<BloodPressureSample> getBloodPressureSamples() {
+        return this.bloodPressureSamples;
+    }
+
+    public boolean equals(final Object o) {
+        if (o == this) return true;
+        if (!(o instanceof BloodPressureData)) return false;
+        final BloodPressureData other = (BloodPressureData) o;
+        if (!other.canEqual((Object) this)) return false;
+        final Object this$bloodPressureSamples = this.getBloodPressureSamples();
+        final Object other$bloodPressureSamples = other.getBloodPressureSamples();
+        if (this$bloodPressureSamples == null ? other$bloodPressureSamples != null : !this$bloodPressureSamples.equals(other$bloodPressureSamples))
+            return false;
+        return true;
+    }
+
+    protected boolean canEqual(final Object other) {
+        return other instanceof BloodPressureData;
+    }
+
+    public int hashCode() {
+        final int PRIME = 59;
+        int result = 1;
+        final Object $bloodPressureSamples = this.getBloodPressureSamples();
+        result = result * PRIME + ($bloodPressureSamples == null ? 43 : $bloodPressureSamples.hashCode());
+        return result;
+    }
+
+    public String toString() {
+        return "BloodPressureData(bloodPressureSamples=" + this.getBloodPressureSamples() + ")";
+    }
 }

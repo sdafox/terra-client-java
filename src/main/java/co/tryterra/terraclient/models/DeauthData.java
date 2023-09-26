@@ -17,9 +17,42 @@
 package co.tryterra.terraclient.models;
 
 import co.tryterra.terraclient.api.User;
-import lombok.Data;
 
-@Data
 public class DeauthData {
     private final User user;
+
+    public DeauthData(User user) {
+        this.user = user;
+    }
+
+    public User getUser() {
+        return this.user;
+    }
+
+    public boolean equals(final Object o) {
+        if (o == this) return true;
+        if (!(o instanceof DeauthData)) return false;
+        final DeauthData other = (DeauthData) o;
+        if (!other.canEqual((Object) this)) return false;
+        final Object this$user = this.getUser();
+        final Object other$user = other.getUser();
+        if (this$user == null ? other$user != null : !this$user.equals(other$user)) return false;
+        return true;
+    }
+
+    protected boolean canEqual(final Object other) {
+        return other instanceof DeauthData;
+    }
+
+    public int hashCode() {
+        final int PRIME = 59;
+        int result = 1;
+        final Object $user = this.getUser();
+        result = result * PRIME + ($user == null ? 43 : $user.hashCode());
+        return result;
+    }
+
+    public String toString() {
+        return "DeauthData(user=" + this.getUser() + ")";
+    }
 }

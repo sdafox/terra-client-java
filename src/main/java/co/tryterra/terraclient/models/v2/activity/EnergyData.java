@@ -18,18 +18,56 @@ package co.tryterra.terraclient.models.v2.activity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.AccessLevel;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-@Data
-@NoArgsConstructor
-@Setter(AccessLevel.NONE)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class EnergyData {
     @JsonProperty("energy_kilojoules")
     private Double energyKilojoules;
     @JsonProperty("energy_planned_kilojoules")
     private Double energyPlannedKilojoules;
+
+    public EnergyData() {
+    }
+
+    public Double getEnergyKilojoules() {
+        return this.energyKilojoules;
+    }
+
+    public Double getEnergyPlannedKilojoules() {
+        return this.energyPlannedKilojoules;
+    }
+
+    public boolean equals(final Object o) {
+        if (o == this) return true;
+        if (!(o instanceof EnergyData)) return false;
+        final EnergyData other = (EnergyData) o;
+        if (!other.canEqual((Object) this)) return false;
+        final Object this$energyKilojoules = this.getEnergyKilojoules();
+        final Object other$energyKilojoules = other.getEnergyKilojoules();
+        if (this$energyKilojoules == null ? other$energyKilojoules != null : !this$energyKilojoules.equals(other$energyKilojoules))
+            return false;
+        final Object this$energyPlannedKilojoules = this.getEnergyPlannedKilojoules();
+        final Object other$energyPlannedKilojoules = other.getEnergyPlannedKilojoules();
+        if (this$energyPlannedKilojoules == null ? other$energyPlannedKilojoules != null : !this$energyPlannedKilojoules.equals(other$energyPlannedKilojoules))
+            return false;
+        return true;
+    }
+
+    protected boolean canEqual(final Object other) {
+        return other instanceof EnergyData;
+    }
+
+    public int hashCode() {
+        final int PRIME = 59;
+        int result = 1;
+        final Object $energyKilojoules = this.getEnergyKilojoules();
+        result = result * PRIME + ($energyKilojoules == null ? 43 : $energyKilojoules.hashCode());
+        final Object $energyPlannedKilojoules = this.getEnergyPlannedKilojoules();
+        result = result * PRIME + ($energyPlannedKilojoules == null ? 43 : $energyPlannedKilojoules.hashCode());
+        return result;
+    }
+
+    public String toString() {
+        return "EnergyData(energyKilojoules=" + this.getEnergyKilojoules() + ", energyPlannedKilojoules=" + this.getEnergyPlannedKilojoules() + ")";
+    }
 }

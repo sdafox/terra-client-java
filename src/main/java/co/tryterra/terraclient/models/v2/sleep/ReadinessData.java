@@ -18,17 +18,54 @@ package co.tryterra.terraclient.models.v2.sleep;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.AccessLevel;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-@Data
-@NoArgsConstructor
-@Setter(AccessLevel.NONE)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ReadinessData {
     private Integer readiness;
     @JsonProperty("recovery_level")
     private Integer recoveryLevel;
+
+    public ReadinessData() {
+    }
+
+    public Integer getReadiness() {
+        return this.readiness;
+    }
+
+    public Integer getRecoveryLevel() {
+        return this.recoveryLevel;
+    }
+
+    public boolean equals(final Object o) {
+        if (o == this) return true;
+        if (!(o instanceof ReadinessData)) return false;
+        final ReadinessData other = (ReadinessData) o;
+        if (!other.canEqual((Object) this)) return false;
+        final Object this$readiness = this.getReadiness();
+        final Object other$readiness = other.getReadiness();
+        if (this$readiness == null ? other$readiness != null : !this$readiness.equals(other$readiness)) return false;
+        final Object this$recoveryLevel = this.getRecoveryLevel();
+        final Object other$recoveryLevel = other.getRecoveryLevel();
+        if (this$recoveryLevel == null ? other$recoveryLevel != null : !this$recoveryLevel.equals(other$recoveryLevel))
+            return false;
+        return true;
+    }
+
+    protected boolean canEqual(final Object other) {
+        return other instanceof ReadinessData;
+    }
+
+    public int hashCode() {
+        final int PRIME = 59;
+        int result = 1;
+        final Object $readiness = this.getReadiness();
+        result = result * PRIME + ($readiness == null ? 43 : $readiness.hashCode());
+        final Object $recoveryLevel = this.getRecoveryLevel();
+        result = result * PRIME + ($recoveryLevel == null ? 43 : $recoveryLevel.hashCode());
+        return result;
+    }
+
+    public String toString() {
+        return "ReadinessData(readiness=" + this.getReadiness() + ", recoveryLevel=" + this.getRecoveryLevel() + ")";
+    }
 }

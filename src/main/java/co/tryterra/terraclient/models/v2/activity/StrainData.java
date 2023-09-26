@@ -18,16 +18,44 @@ package co.tryterra.terraclient.models.v2.activity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.AccessLevel;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-@Data
-@NoArgsConstructor
-@Setter(AccessLevel.NONE)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class StrainData {
     @JsonProperty("strain_level")
     public Double strainLevel;
+
+    public StrainData() {
+    }
+
+    public Double getStrainLevel() {
+        return this.strainLevel;
+    }
+
+    public boolean equals(final Object o) {
+        if (o == this) return true;
+        if (!(o instanceof StrainData)) return false;
+        final StrainData other = (StrainData) o;
+        if (!other.canEqual((Object) this)) return false;
+        final Object this$strainLevel = this.getStrainLevel();
+        final Object other$strainLevel = other.getStrainLevel();
+        if (this$strainLevel == null ? other$strainLevel != null : !this$strainLevel.equals(other$strainLevel))
+            return false;
+        return true;
+    }
+
+    protected boolean canEqual(final Object other) {
+        return other instanceof StrainData;
+    }
+
+    public int hashCode() {
+        final int PRIME = 59;
+        int result = 1;
+        final Object $strainLevel = this.getStrainLevel();
+        result = result * PRIME + ($strainLevel == null ? 43 : $strainLevel.hashCode());
+        return result;
+    }
+
+    public String toString() {
+        return "StrainData(strainLevel=" + this.getStrainLevel() + ")";
+    }
 }

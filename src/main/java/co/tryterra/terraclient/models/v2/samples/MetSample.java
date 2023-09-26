@@ -17,16 +17,50 @@
 package co.tryterra.terraclient.models.v2.samples;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.AccessLevel;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-@Data
-@NoArgsConstructor
-@Setter(AccessLevel.NONE)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class MetSample {
     private String timestamp;
     private double level;
+
+    public MetSample() {
+    }
+
+    public String getTimestamp() {
+        return this.timestamp;
+    }
+
+    public double getLevel() {
+        return this.level;
+    }
+
+    public boolean equals(final Object o) {
+        if (o == this) return true;
+        if (!(o instanceof MetSample)) return false;
+        final MetSample other = (MetSample) o;
+        if (!other.canEqual((Object) this)) return false;
+        final Object this$timestamp = this.getTimestamp();
+        final Object other$timestamp = other.getTimestamp();
+        if (this$timestamp == null ? other$timestamp != null : !this$timestamp.equals(other$timestamp)) return false;
+        if (Double.compare(this.getLevel(), other.getLevel()) != 0) return false;
+        return true;
+    }
+
+    protected boolean canEqual(final Object other) {
+        return other instanceof MetSample;
+    }
+
+    public int hashCode() {
+        final int PRIME = 59;
+        int result = 1;
+        final Object $timestamp = this.getTimestamp();
+        result = result * PRIME + ($timestamp == null ? 43 : $timestamp.hashCode());
+        final long $level = Double.doubleToLongBits(this.getLevel());
+        result = result * PRIME + (int) ($level >>> 32 ^ $level);
+        return result;
+    }
+
+    public String toString() {
+        return "MetSample(timestamp=" + this.getTimestamp() + ", level=" + this.getLevel() + ")";
+    }
 }

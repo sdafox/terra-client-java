@@ -18,17 +18,50 @@ package co.tryterra.terraclient.models.v2.samples;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.AccessLevel;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-@Data
-@NoArgsConstructor
-@Setter(AccessLevel.NONE)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class SnoringSample {
     private String timestamp;
     @JsonProperty("duration_seconds")
     private int durationSeconds;
+
+    public SnoringSample() {
+    }
+
+    public String getTimestamp() {
+        return this.timestamp;
+    }
+
+    public int getDurationSeconds() {
+        return this.durationSeconds;
+    }
+
+    public boolean equals(final Object o) {
+        if (o == this) return true;
+        if (!(o instanceof SnoringSample)) return false;
+        final SnoringSample other = (SnoringSample) o;
+        if (!other.canEqual((Object) this)) return false;
+        final Object this$timestamp = this.getTimestamp();
+        final Object other$timestamp = other.getTimestamp();
+        if (this$timestamp == null ? other$timestamp != null : !this$timestamp.equals(other$timestamp)) return false;
+        if (this.getDurationSeconds() != other.getDurationSeconds()) return false;
+        return true;
+    }
+
+    protected boolean canEqual(final Object other) {
+        return other instanceof SnoringSample;
+    }
+
+    public int hashCode() {
+        final int PRIME = 59;
+        int result = 1;
+        final Object $timestamp = this.getTimestamp();
+        result = result * PRIME + ($timestamp == null ? 43 : $timestamp.hashCode());
+        result = result * PRIME + this.getDurationSeconds();
+        return result;
+    }
+
+    public String toString() {
+        return "SnoringSample(timestamp=" + this.getTimestamp() + ", durationSeconds=" + this.getDurationSeconds() + ")";
+    }
 }

@@ -18,17 +18,45 @@ package co.tryterra.terraclient.models.v2.body;
 
 import co.tryterra.terraclient.models.v2.samples.MeasurementDataSample;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.AccessLevel;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import java.util.List;
 
-@Data
-@NoArgsConstructor
-@Setter(AccessLevel.NONE)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class MeasurementsData {
     private List<MeasurementDataSample> measurements;
+
+    public MeasurementsData() {
+    }
+
+    public List<MeasurementDataSample> getMeasurements() {
+        return this.measurements;
+    }
+
+    public boolean equals(final Object o) {
+        if (o == this) return true;
+        if (!(o instanceof MeasurementsData)) return false;
+        final MeasurementsData other = (MeasurementsData) o;
+        if (!other.canEqual((Object) this)) return false;
+        final Object this$measurements = this.getMeasurements();
+        final Object other$measurements = other.getMeasurements();
+        if (this$measurements == null ? other$measurements != null : !this$measurements.equals(other$measurements))
+            return false;
+        return true;
+    }
+
+    protected boolean canEqual(final Object other) {
+        return other instanceof MeasurementsData;
+    }
+
+    public int hashCode() {
+        final int PRIME = 59;
+        int result = 1;
+        final Object $measurements = this.getMeasurements();
+        result = result * PRIME + ($measurements == null ? 43 : $measurements.hashCode());
+        return result;
+    }
+
+    public String toString() {
+        return "MeasurementsData(measurements=" + this.getMeasurements() + ")";
+    }
 }

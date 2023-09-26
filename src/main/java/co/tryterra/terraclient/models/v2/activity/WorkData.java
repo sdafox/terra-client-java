@@ -18,16 +18,44 @@ package co.tryterra.terraclient.models.v2.activity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.AccessLevel;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-@Data
-@NoArgsConstructor
-@Setter(AccessLevel.NONE)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class WorkData {
     @JsonProperty("work_kilojoules")
     private Double workKilojoules;
+
+    public WorkData() {
+    }
+
+    public Double getWorkKilojoules() {
+        return this.workKilojoules;
+    }
+
+    public boolean equals(final Object o) {
+        if (o == this) return true;
+        if (!(o instanceof WorkData)) return false;
+        final WorkData other = (WorkData) o;
+        if (!other.canEqual((Object) this)) return false;
+        final Object this$workKilojoules = this.getWorkKilojoules();
+        final Object other$workKilojoules = other.getWorkKilojoules();
+        if (this$workKilojoules == null ? other$workKilojoules != null : !this$workKilojoules.equals(other$workKilojoules))
+            return false;
+        return true;
+    }
+
+    protected boolean canEqual(final Object other) {
+        return other instanceof WorkData;
+    }
+
+    public int hashCode() {
+        final int PRIME = 59;
+        int result = 1;
+        final Object $workKilojoules = this.getWorkKilojoules();
+        result = result * PRIME + ($workKilojoules == null ? 43 : $workKilojoules.hashCode());
+        return result;
+    }
+
+    public String toString() {
+        return "WorkData(workKilojoules=" + this.getWorkKilojoules() + ")";
+    }
 }

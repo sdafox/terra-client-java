@@ -18,17 +18,44 @@ package co.tryterra.terraclient.models.v2.activity;
 
 import co.tryterra.terraclient.models.v2.samples.LapSample;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.AccessLevel;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import java.util.List;
 
-@Data
-@NoArgsConstructor
-@Setter(AccessLevel.NONE)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class LapData {
     private List<LapSample> laps;
+
+    public LapData() {
+    }
+
+    public List<LapSample> getLaps() {
+        return this.laps;
+    }
+
+    public boolean equals(final Object o) {
+        if (o == this) return true;
+        if (!(o instanceof LapData)) return false;
+        final LapData other = (LapData) o;
+        if (!other.canEqual((Object) this)) return false;
+        final Object this$laps = this.getLaps();
+        final Object other$laps = other.getLaps();
+        if (this$laps == null ? other$laps != null : !this$laps.equals(other$laps)) return false;
+        return true;
+    }
+
+    protected boolean canEqual(final Object other) {
+        return other instanceof LapData;
+    }
+
+    public int hashCode() {
+        final int PRIME = 59;
+        int result = 1;
+        final Object $laps = this.getLaps();
+        result = result * PRIME + ($laps == null ? 43 : $laps.hashCode());
+        return result;
+    }
+
+    public String toString() {
+        return "LapData(laps=" + this.getLaps() + ")";
+    }
 }

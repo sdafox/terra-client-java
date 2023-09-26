@@ -18,14 +18,7 @@ package co.tryterra.terraclient.models.v2.common;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.AccessLevel;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-@Data
-@NoArgsConstructor
-@Setter(AccessLevel.NONE)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CaloriesData {
     @JsonProperty("net_intake_calories")
@@ -36,4 +29,69 @@ public class CaloriesData {
     private Double totalBurnedCalories;
     @JsonProperty("net_activity_calories")
     private Double netActivityCalories;
+
+    public CaloriesData() {
+    }
+
+    public Double getNetIntakeCalories() {
+        return this.netIntakeCalories;
+    }
+
+    public Double getBmrCalories() {
+        return this.bmrCalories;
+    }
+
+    public Double getTotalBurnedCalories() {
+        return this.totalBurnedCalories;
+    }
+
+    public Double getNetActivityCalories() {
+        return this.netActivityCalories;
+    }
+
+    public boolean equals(final Object o) {
+        if (o == this) return true;
+        if (!(o instanceof CaloriesData)) return false;
+        final CaloriesData other = (CaloriesData) o;
+        if (!other.canEqual((Object) this)) return false;
+        final Object this$netIntakeCalories = this.getNetIntakeCalories();
+        final Object other$netIntakeCalories = other.getNetIntakeCalories();
+        if (this$netIntakeCalories == null ? other$netIntakeCalories != null : !this$netIntakeCalories.equals(other$netIntakeCalories))
+            return false;
+        final Object this$bmrCalories = this.getBmrCalories();
+        final Object other$bmrCalories = other.getBmrCalories();
+        if (this$bmrCalories == null ? other$bmrCalories != null : !this$bmrCalories.equals(other$bmrCalories))
+            return false;
+        final Object this$totalBurnedCalories = this.getTotalBurnedCalories();
+        final Object other$totalBurnedCalories = other.getTotalBurnedCalories();
+        if (this$totalBurnedCalories == null ? other$totalBurnedCalories != null : !this$totalBurnedCalories.equals(other$totalBurnedCalories))
+            return false;
+        final Object this$netActivityCalories = this.getNetActivityCalories();
+        final Object other$netActivityCalories = other.getNetActivityCalories();
+        if (this$netActivityCalories == null ? other$netActivityCalories != null : !this$netActivityCalories.equals(other$netActivityCalories))
+            return false;
+        return true;
+    }
+
+    protected boolean canEqual(final Object other) {
+        return other instanceof CaloriesData;
+    }
+
+    public int hashCode() {
+        final int PRIME = 59;
+        int result = 1;
+        final Object $netIntakeCalories = this.getNetIntakeCalories();
+        result = result * PRIME + ($netIntakeCalories == null ? 43 : $netIntakeCalories.hashCode());
+        final Object $bmrCalories = this.getBmrCalories();
+        result = result * PRIME + ($bmrCalories == null ? 43 : $bmrCalories.hashCode());
+        final Object $totalBurnedCalories = this.getTotalBurnedCalories();
+        result = result * PRIME + ($totalBurnedCalories == null ? 43 : $totalBurnedCalories.hashCode());
+        final Object $netActivityCalories = this.getNetActivityCalories();
+        result = result * PRIME + ($netActivityCalories == null ? 43 : $netActivityCalories.hashCode());
+        return result;
+    }
+
+    public String toString() {
+        return "CaloriesData(netIntakeCalories=" + this.getNetIntakeCalories() + ", bmrCalories=" + this.getBmrCalories() + ", totalBurnedCalories=" + this.getTotalBurnedCalories() + ", netActivityCalories=" + this.getNetActivityCalories() + ")";
+    }
 }

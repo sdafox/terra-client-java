@@ -19,18 +19,46 @@ package co.tryterra.terraclient.models.v2.activity;
 import co.tryterra.terraclient.models.v2.samples.TssSample;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.AccessLevel;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import java.util.List;
 
-@Data
-@NoArgsConstructor
-@Setter(AccessLevel.NONE)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class TssData {
     @JsonProperty("TSS_samples")
     private List<TssSample> tssSamples;
+
+    public TssData() {
+    }
+
+    public List<TssSample> getTssSamples() {
+        return this.tssSamples;
+    }
+
+    public boolean equals(final Object o) {
+        if (o == this) return true;
+        if (!(o instanceof TssData)) return false;
+        final TssData other = (TssData) o;
+        if (!other.canEqual((Object) this)) return false;
+        final Object this$tssSamples = this.getTssSamples();
+        final Object other$tssSamples = other.getTssSamples();
+        if (this$tssSamples == null ? other$tssSamples != null : !this$tssSamples.equals(other$tssSamples))
+            return false;
+        return true;
+    }
+
+    protected boolean canEqual(final Object other) {
+        return other instanceof TssData;
+    }
+
+    public int hashCode() {
+        final int PRIME = 59;
+        int result = 1;
+        final Object $tssSamples = this.getTssSamples();
+        result = result * PRIME + ($tssSamples == null ? 43 : $tssSamples.hashCode());
+        return result;
+    }
+
+    public String toString() {
+        return "TssData(tssSamples=" + this.getTssSamples() + ")";
+    }
 }

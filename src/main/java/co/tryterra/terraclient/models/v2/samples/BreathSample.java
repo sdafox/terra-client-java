@@ -18,17 +18,51 @@ package co.tryterra.terraclient.models.v2.samples;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.AccessLevel;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-@Data
-@NoArgsConstructor
-@Setter(AccessLevel.NONE)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class BreathSample {
     private String timestamp;
     @JsonProperty("breaths_per_min")
     private double breathsPerMin;
+
+    public BreathSample() {
+    }
+
+    public String getTimestamp() {
+        return this.timestamp;
+    }
+
+    public double getBreathsPerMin() {
+        return this.breathsPerMin;
+    }
+
+    public boolean equals(final Object o) {
+        if (o == this) return true;
+        if (!(o instanceof BreathSample)) return false;
+        final BreathSample other = (BreathSample) o;
+        if (!other.canEqual((Object) this)) return false;
+        final Object this$timestamp = this.getTimestamp();
+        final Object other$timestamp = other.getTimestamp();
+        if (this$timestamp == null ? other$timestamp != null : !this$timestamp.equals(other$timestamp)) return false;
+        if (Double.compare(this.getBreathsPerMin(), other.getBreathsPerMin()) != 0) return false;
+        return true;
+    }
+
+    protected boolean canEqual(final Object other) {
+        return other instanceof BreathSample;
+    }
+
+    public int hashCode() {
+        final int PRIME = 59;
+        int result = 1;
+        final Object $timestamp = this.getTimestamp();
+        result = result * PRIME + ($timestamp == null ? 43 : $timestamp.hashCode());
+        final long $breathsPerMin = Double.doubleToLongBits(this.getBreathsPerMin());
+        result = result * PRIME + (int) ($breathsPerMin >>> 32 ^ $breathsPerMin);
+        return result;
+    }
+
+    public String toString() {
+        return "BreathSample(timestamp=" + this.getTimestamp() + ", breathsPerMin=" + this.getBreathsPerMin() + ")";
+    }
 }

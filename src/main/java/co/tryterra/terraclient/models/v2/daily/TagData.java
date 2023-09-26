@@ -18,17 +18,44 @@ package co.tryterra.terraclient.models.v2.daily;
 
 import co.tryterra.terraclient.models.v2.samples.TagEntry;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.AccessLevel;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import java.util.List;
 
-@Data
-@NoArgsConstructor
-@Setter(AccessLevel.NONE)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class TagData {
     private List<TagEntry> tags;
+
+    public TagData() {
+    }
+
+    public List<TagEntry> getTags() {
+        return this.tags;
+    }
+
+    public boolean equals(final Object o) {
+        if (o == this) return true;
+        if (!(o instanceof TagData)) return false;
+        final TagData other = (TagData) o;
+        if (!other.canEqual((Object) this)) return false;
+        final Object this$tags = this.getTags();
+        final Object other$tags = other.getTags();
+        if (this$tags == null ? other$tags != null : !this$tags.equals(other$tags)) return false;
+        return true;
+    }
+
+    protected boolean canEqual(final Object other) {
+        return other instanceof TagData;
+    }
+
+    public int hashCode() {
+        final int PRIME = 59;
+        int result = 1;
+        final Object $tags = this.getTags();
+        result = result * PRIME + ($tags == null ? 43 : $tags.hashCode());
+        return result;
+    }
+
+    public String toString() {
+        return "TagData(tags=" + this.getTags() + ")";
+    }
 }
